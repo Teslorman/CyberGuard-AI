@@ -17,10 +17,6 @@ services:
       npm --prefix frontend run build
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/health
-    disk:
-      name: cyberguard-data
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.8
