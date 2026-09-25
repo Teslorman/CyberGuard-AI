@@ -1,0 +1,13 @@
+.venv/
+frontend/node_modules/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+backend/__pycache__/
+data/*.db*
+data/*.json
+data/*.log
+.tooling/
+data/workspaces/
+data/uploads/
+**/__pycache__/
+docs/qa-results.json
