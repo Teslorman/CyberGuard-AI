@@ -12,7 +12,9 @@ services:
       https://github.com/gitleaks/gitleaks/releases/download/v8.30.0/gitleaks_8.30.0_linux_x64.tar.gz &&
       curl -fsSL -o /tmp/gitleaks_checksums.txt
       https://github.com/gitleaks/gitleaks/releases/download/v8.30.0/gitleaks_8.30.0_checksums.txt &&
-      grep 'gitleaks_8.30.0_linux_x64.tar.gz' /tmp/gitleaks_checksums.txt | sha256sum -c - &&
+      expected=$(grep 'gitleaks_8.30.0_linux_x64.tar.gz' /tmp/gitleaks_checksums.txt | awk '{print $1}') &&
+      actual=$(sha256sum /tmp/gitleaks.tar.gz | awk '{print $1}') &&
+      test "$expected" = "$actual" &&
       tar -xzf /tmp/gitleaks.tar.gz -C .tooling/gitleaks gitleaks &&
       npm --prefix frontend ci --no-audit --no-fund &&
       npm --prefix frontend run build
